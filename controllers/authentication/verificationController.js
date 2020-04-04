@@ -1,5 +1,5 @@
 const { _responseWrapper } = require("@utils/utilresponse");
-const VerificationSchema = require("@models/authentication/Verification");
+const VerificationSchema = require("@models/authentication/verification");
 const randomstring = require("randomstring");
 const keys = require("../../config/keys");
 const { sendMailFN } = require("../../utils/nodemailer");
