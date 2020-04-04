@@ -12,5 +12,5 @@ mongoose
   .then(() => console.log("Database connected!"))
   .catch(err => console.log("error connecting database =>", err));
 
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
+// mongoose.set("useFindAndModify", false);
+// mongoose.set("useCreateIndex", true);
