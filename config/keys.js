@@ -5,13 +5,13 @@ const keys = {
   MONGO_URI: 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority',
 };
 
-if (process.env.NODE_ENV === "development") {
-  keys["MONGO_URI"] = 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority';
-}
+// if (process.env.NODE_ENV === "development") {
+//   keys["MONGO_URI"] = 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority';
+// }
 
-if (process.env.NODE_ENV === "production") {
-  keys["MONGO_URI"] = 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority';
-}
+// if (process.env.NODE_ENV === "production") {
+//   keys["MONGO_URI"] = 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority';
+// }
 
 
 module.exports = keys;
