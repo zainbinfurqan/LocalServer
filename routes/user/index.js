@@ -4,7 +4,7 @@ const router = express.Router();
 
 // rout file for user e.g login, signup, 
 const { signUpFN, } = require("@controllers/user/signUpController"),
-  { loginFN, } = require("@controllers/user/LoginController"),
+  { loginFN, } = require("@controllers/user/loginController"),
   { updateUserProfile } = require("@controllers/user/userController");
 
   //for registratio 
