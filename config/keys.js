@@ -1,8 +1,8 @@
 const keys = {
   PORT: process.env.PORT,
-  SALT: Number(process.env.SALT),
-  JWT_SECRET: process.env.JWT_SECRET,
-  MONGO_URI: process.env.MONGO_URI,
+  SALT: 10,
+  JWT_SECRET: 'dbName*$@JLTiCkEtBOx2k20^',
+  MONGO_URI: 'mongodb+srv://zain:zain@cluster0-4xkaq.mongodb.net/test?retryWrites=true&w=majority',
 };
 
 if (process.env.NODE_ENV === "development") {
