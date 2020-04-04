@@ -6,7 +6,18 @@ const CacheSchema = require("@models/cache");
 const bcrypt = require("bcryptjs");
 const keys = require("../../config/keys");
 const consts = require('../../config/constants')
-
+// const multer = require('multer');
+// var upload = multer({ dest: 'uploads/' })
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// })
+ 
+// var upload = multer({ storage: storage })
 
 
 /**
@@ -22,6 +33,7 @@ exports.signUpFN = async (req, res, next) => {
     }
 
     const payload = { ...req.body };
+
 
     const salt = await bcrypt.genSalt(keys.SALT);
 
@@ -56,7 +68,7 @@ exports.signUpFN = async (req, res, next) => {
     await cache.save();
 
     const responseToSend = responseWrapper(
-      `${req.body.role} register successfully`,
+      `user register successfully`,
       response
     );
 

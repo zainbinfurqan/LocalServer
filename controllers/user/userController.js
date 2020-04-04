@@ -19,26 +19,26 @@ exports.updateUserProfile = async (req, res, next) => {
 
         const payload = { ...req.body };
 
+
         let query = {
             _id: mongoose.Types.ObjectId(payload.userId)
         }
 
         let updateObject = {
-            paylaod
+            ...payload
         }
 
         let updateUser = await UserSchema.findOneAndUpdate(query, updateObject, { new: true })
 
-        if (updateUser.length > 0) {
-            const responseToSend = _responseWrapper(
+
+        if (updateUser) {
+            const responseToSend = responseWrapper(
                 `info update`,
             );
-
             res.status(200).json(responseToSend);
-
+        } else {
+            res.status(203).json(`somthing went wrong`);
         }
-
-        res.status(200).json(`somthing went wrong`);
 
     } catch (e) {
         next({ message: e });

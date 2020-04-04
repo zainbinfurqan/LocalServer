@@ -63,13 +63,12 @@ exports.loginFN = async (req, res, next) => {
     await cache.save();
 
     const responseToSend = responseWrapper(
-      `${userResult.role} login Successfully`,
+      `user login Successfully`,
       response
     );
 
-    res.status(203).json(responseToSend);
+    res.status(200).json(responseToSend);
 
-    (203).json(responseToSend);
 
   } catch (e) {
     next({ message: e });

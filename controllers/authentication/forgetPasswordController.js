@@ -70,7 +70,7 @@ exports.resetPasswordFN = async (erq, res, next) => {
 
         payload.password = await bcrypt.hash(payload.password, salt);
 
-        let query = {
+        let query_ = {
             _id: mongoose.Types.ObjectId(userResult._id)
         }
 
@@ -78,7 +78,7 @@ exports.resetPasswordFN = async (erq, res, next) => {
             password: payload.password
         }
 
-        let updateUser = await UserSchema.findOneAndUpdate(query, updateObject, { new: true })
+        let updateUser = await UserSchema.findOneAndUpdate(query_, updateObject, { new: true })
 
         if (updateUser.length > 0) {
             const responseToSend = _responseWrapper(

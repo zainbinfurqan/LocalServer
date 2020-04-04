@@ -3,6 +3,10 @@ const path = require("path"),
   express = require("express"),
   globalHelpers = require("./utils/globalHelpers"),
   app = express();
+  fileUpload = require('express-fileupload'),
+  app.use(fileUpload({
+    useTempFiles: true,
+  }));
   // app = require("express")(),
   // http = require("http").createServer(express),
   // io = require("socket.io")(http);
