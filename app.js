@@ -3,12 +3,12 @@ const path = require("path"),
   cron = require('node-cron'),
   express = require("express"),
   globalHelpers = require("./utils/globalHelpers"),
-  app = express();
-fileUpload = require('express-fileupload'),
-  { redisFunctions } = require('./controllers/redis/redisController'),
-  app.use(fileUpload({
-    useTempFiles: true,
-  }));
+  app = express(),
+  fileUpload = require('express-fileupload'),
+  { redisFunctions } = require('./controllers/redis/redisController');
+app.use(fileUpload({
+  useTempFiles: true,
+}));
 // app = require("express")(),
 // http = require("http").createServer(express),
 // io = require("socket.io")(http);
@@ -47,7 +47,7 @@ app.get("/", function (_, res) {
   res.json({ message: "server is up and running" });
 });
 
-app.get('/redis', redisFunctions)
+// app.get('/redis', redisFunctions)
 
 // Global error handler
 app.use((err, _, res, next) => {
