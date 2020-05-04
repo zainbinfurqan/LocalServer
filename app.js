@@ -61,8 +61,8 @@ app.listen(keys.PORT, () =>
 
 );
 
-cron.schedule('* 1 * * *', () => {
-  console.log('running a task every minute');
+cron.schedule("* * * * *", function() {
+  console.log("running a task every minute");
 });
 
 
