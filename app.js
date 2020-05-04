@@ -60,10 +60,10 @@ app.listen(keys.PORT, () =>
   console.log("server is running on port", keys.PORT)
 
 );
-
-cron.schedule("* * * * *", function() {
-  console.log("running a task every minute");
-});
+// let a = 0
+// cron.schedule("* * * * *", function () {
+//   console.log(a++);
+// });
 
 
 module.exports = app;
