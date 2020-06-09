@@ -94,7 +94,7 @@ app.post('/api/createUser', async (req, res, next) => {
 app.get('/api/getUsers', async (req, res, next) => {
   try {
 
-    let fetchUser = await UserSchema.find({ _id: { $ne: req.query.userId } });
+    let fetchUser = await UserSchema.find({});
 
     res.status(200).json(fetchUser)
 
