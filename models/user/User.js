@@ -14,18 +14,18 @@ const UserSchema = new Schema(
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      // required: [true, "Email is required"],
       unique: true,
       lowercase: true
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      // required: [true, "Password is required"],
       select: false
     },
     phoneNo: {
       type: Number,
-      required: [true, "Phone number is required"]
+      // required: [true, "Phone number is required"]
     },
     emailVerified: {
       type: Boolean,

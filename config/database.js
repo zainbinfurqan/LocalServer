@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 const keys = require("../config/keys");
-console.log(keys)
+// console.log(keys)
 mongoose
   .connect(keys.MONGO_URI, {
     useUnifiedTopology: true,
