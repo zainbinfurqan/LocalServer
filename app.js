@@ -65,8 +65,9 @@ app.use((err, _, res, next) => {
 
   res.status(err.status || 400).json({ ...error, success: false });
 });
-app.listen(keys.PORT, () =>
-  console.log("server is running on port", keys.PORT)
+const Port = process.env.PORT || 3000;
+app.listen(Port, () =>
+  console.log("server is running on port", Port)
 
 );
 
