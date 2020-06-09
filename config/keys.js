@@ -1,5 +1,5 @@
 const keys = {
-  PORT: process.env.PORT,
+  PORT: 3000,
   SALT: 10,
   JWT_SECRET: 'dbName*$@JLTiCkEtBOx2k20^',
   MONGO_URI: 'mongodb+srv://zain:ZAIN@cluster0-vlmgy.mongodb.net/Chatting?retryWrites=true&w=majority',

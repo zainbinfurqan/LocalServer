@@ -10,12 +10,14 @@ const path = require("path"),
 app.use(fileUpload({
   useTempFiles: true,
 }));
+require("dotenv").config();
+
 // app = require("express")(),
 // http = require("http").createServer(express),
 // io = require("socket.io")(http);
 // Include Packages
 require("module-alias/register");
-
+// Load environment variables
 
 //-----------------------
 const UserSchema = require('./models/user/User');
@@ -24,12 +26,12 @@ const chatting = require('./models/chatting/chatting');
 const bcrypt = require("bcryptjs");
 
 // Load environment variables
-require("dotenv").config();
 
 // Mongoose Connection
 // require("./config/database");
 
 const keys = require("./config/keys");
+console.log(keys)
 
 //To prevent attackers from reading this header (which is enabled by default) to detect apps running express
 app.disable("x-powered-by");
@@ -63,9 +65,8 @@ app.use((err, _, res, next) => {
 
   res.status(err.status || 400).json({ ...error, success: false });
 });
-const PORT = 3000
-app.listen(PORT, () =>
-  console.log("server is running on port", PORT)
+app.listen(keys.PORT, () =>
+  console.log("server is running on port", keys.PORT)
 
 );
 
