@@ -66,7 +66,7 @@ app.use((err, _, res, next) => {
   res.status(err.status || 400).json({ ...error, success: false });
 });
 const Port = process.env.PORT || 3000;
-app.listen(Port, () =>
+const server = app.listen(Port, () =>
   console.log("server is running on port", Port)
 
 );
@@ -89,6 +89,29 @@ app.post('/api/createUser', async (req, res, next) => {
 
     res.status(304).json(error)
 
+  }
+})
+
+
+app.post('/api/login', async (req, res, next) => {
+  try {
+
+    let getEmail = await UserSchema.findOne({ email: req.body.email });
+
+    console.log(getEmail, "getEmail")
+
+    if (!getEmail) { throw new Error("invalid email or password"); }
+
+    const hash = bcrypt.hashSync(req.body.password, getEmail[0].password);
+
+    console.log(hash, "hash")
+    // if (!hash) { res.status(304).json({ message: "Password incorrect" }) }
+    if (!hash) { throw new Error("invalid email or password"); }
+
+    res.status(200).json({ message: 'login successfully' })
+
+  } catch (error) {
+    res.status(200).json(error)
   }
 })
 
@@ -141,15 +164,35 @@ app.post('/creatMessage', async (req, res, next) => {
   }
 })
 
+global.connection = socket(server);
+let connectedUsers = [];
+const nsp = connection.of("/chat");
 
+//chat function  currently working 
+nsp.on("connection", function (s) {
 
+  s.on("room-join", socketData => {
 
+    //-----------new
+    const user = { id: s.id, userName: socketData.sender, room: socketData.room }
+    connectedUsers.push(user);
+    s.join(user.room);
 
+    s.on("new-message", async socketData => {
+      const user = connectedUsers.find(user => user.id === s.id);
+      const payload = { userId: socketData.userId, message: socketData.message, roomId: socketData.roomId };
+      const message = new chatting(payload);
 
-// let a = 0
-// cron.schedule("* * * * *", function () {
-//   console.log(a++);
-// });
+      message.save();
+
+      s.to(user.room).emit("new-message", socketData.message)
+    })
+  });
+  s.on("disconnect", function () {
+    connectedUsers = connectedUsers.filter(item => item.socketId !== s.id);
+  });
+
+});
 
 
 module.exports = app;
