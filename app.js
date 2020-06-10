@@ -16,7 +16,8 @@ require("dotenv").config();
 socket = require("socket.io");// Include Packages
 require("module-alias/register");
 // Load environment variables
-
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
 //-----------------------
 const UserSchema = require('./models/user/User');
 const room = require('./models/room');
