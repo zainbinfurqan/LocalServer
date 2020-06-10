@@ -14,8 +14,7 @@ require("dotenv").config();
 
 // app = require("express")(),
 // http = require("http").createServer(express),
-// io = require("socket.io")(http);
-// Include Packages
+socket = require("socket.io");// Include Packages
 require("module-alias/register");
 // Load environment variables
 
@@ -74,7 +73,7 @@ const server = app.listen(Port, () =>
 //-----------------
 app.post('/api/createUser', async (req, res, next) => {
   try {
-
+    console.log(req.body)
     const salt = await bcrypt.genSalt(10);
 
     req.body.password = await bcrypt.hash(req.body.password, salt);
@@ -95,6 +94,8 @@ app.post('/api/createUser', async (req, res, next) => {
 
 app.post('/api/login', async (req, res, next) => {
   try {
+
+    console.log(req.body)
 
     let getEmail = await UserSchema.findOne({ email: req.body.email });
 
