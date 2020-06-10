@@ -82,6 +82,8 @@ app.post('/api/createUser', async (req, res, next) => {
 
     await createUser.save();
 
+    console.log(createUser)
+
     res.status(200).json(createUser)
 
   } catch (error) {
