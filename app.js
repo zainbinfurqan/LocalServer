@@ -11,7 +11,6 @@ app.use(fileUpload({
   useTempFiles: true,
 }));
 require("dotenv").config();
-
 // app = require("express")(),
 // http = require("http").createServer(express),
 socket = require("socket.io");// Include Packages
@@ -71,9 +70,9 @@ const server = app.listen(Port, () =>
 );
 
 //-----------------
-app.post('/api/createUser', async (req, res, next) => {
+app.post('/api/createUser', async (req, res) => {
   try {
-    console.log(req.body)
+    console.log(req.body, "body")
     const salt = await bcrypt.genSalt(10);
 
     req.body.password = await bcrypt.hash(req.body.password, salt);
