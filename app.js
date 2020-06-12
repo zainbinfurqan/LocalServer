@@ -197,5 +197,16 @@ nsp.on("connection", function (s) {
 
 });
 
-
+// flutter code for upload image to backend node js 
+app.post("/image", function(req, res){
+  var name = req.body.name;
+  var img = req.body.image;
+  var realFile = Buffer.from(img,"base64");
+  fs.writeFile(name, realFile, function(err) {
+      if(err)
+         console.log(err);
+   });
+   res.send("OK");
+ });
+// flutter code for upload image to backend node js 
 module.exports = app;
